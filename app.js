@@ -38,13 +38,11 @@ const performSearch = () => {
             });
     }
 };
-
 // Search when clicking the button
 searchButton.addEventListener('click', (e) => {
     e.preventDefault();
     performSearch();
 });
-
 // Search when pressing Enter in the input field
 userName.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
