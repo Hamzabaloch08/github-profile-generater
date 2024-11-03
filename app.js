@@ -72,7 +72,9 @@ const performSearch = () => {
             })
             .catch((error) => {
                 console.log(error);
+
                 if (error.message === "Failed to fetch" || error.message === "TypeError: Failed to fetch") {
+
                     resetProfile('Please check your internet connection!')
                 } else {
                     resetProfile('An error occurred!')
