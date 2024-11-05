@@ -36,10 +36,17 @@ body {
   cursor: pointer;
 }
 
+.userBio{
+  width: 60%;
+  text-align: center;
+  padding-top: 15px;
+}
+
 .userInfo {
   display: flex;
   justify-content: center;
   gap: 50px;
+  padding: 8px 0px;
 }
 
 .searchBox > input {
