@@ -1,8 +1,5 @@
 /* Responsive Breakpoints */
 
-
-/* Max Width: 1440px */
-
 @media (max-width: 1440px) {
     .userGithubProfileCard {
         width: 60%;
@@ -15,9 +12,6 @@
         font-size: 0.85rem;
     }
 }
-
-
-/* Max Width: 1024px */
 
 @media (max-width: 1024px) {
     .userGithubProfileCard {
@@ -32,9 +26,6 @@
         width: 80%;
     }
 }
-
-
-/* Max Width: 768px */
 
 @media (max-width: 768px) {
     .userGithubProfileCard {
@@ -52,9 +43,6 @@
         padding: 12px 20px;
     }
 }
-
-
-/* Max Width: 425px */
 
 @media (max-width: 425px) {
     .userGithubProfileCard {
@@ -83,9 +71,6 @@
     }
 }
 
-
-/* Max Width: 375px */
-
 @media (max-width: 375px) {
     .userGithubProfileCard {
         width: 95%;
@@ -97,9 +82,6 @@
         font-size: 0.8rem;
     }
 }
-
-
-/* Max Width: 320px */
 
 @media (max-width: 320px) {
     .userGithubProfileCard {
