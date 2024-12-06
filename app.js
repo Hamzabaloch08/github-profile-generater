@@ -3,9 +3,9 @@ const searchButton = document.querySelector('.searchBox > button');
 const profilePic = document.querySelector('.userProfilePic > img');
 const userBio = document.querySelector('.userBio > p');
 const profileCard = document.querySelector('.userGithubProfileCard');
-let errorMsg = document.querySelector('.userGithubProfileCard > h2')
-let follower = document.querySelector('.userFollower')
-let following = document.querySelector('.userFollowing')
+const errorMsg = document.querySelector('#heading');
+const follower = document.querySelector('.userFollower');
+const following = document.querySelector('.userFollowing');
 
 // Function to update profile details
 const updateProfile = (data) => {
@@ -13,31 +13,22 @@ const updateProfile = (data) => {
     profilePic.alt = data.login;
     profilePic.title = data.login;
 
-    if (!data.bio) {
-        userBio.textContent = `Hi 👋🏻, I'm ${searchValue}`;
-    } else {
-        userBio.textContent = data.bio;
-    }
+    userBio.textContent = data.bio || `Hi 👋🏻, I'm ${data.login}`;
 
     follower.textContent = `Followers: ${data.followers}`;
     following.textContent = `Following: ${data.following}`;
 
-    profileCard.style.justifyContent = 'start';
-    profileCard.style.paddingTop = '20px';
-    profileCard.style.gap = '15px';
     errorMsg.textContent = '';
+
+    document.querySelector('.searchBox').style.marginTop = '30px';
 };
 
 // Function to reset profile details on error
 const resetProfile = (errorText) => {
     errorMsg.textContent = errorText;
-    errorMsg.style.color = 'red';
+    errorMsg.style.color = 'red'; // Apply error styling
 
-    profileCard.style.justifyContent = 'center';
-    profileCard.style.paddingTop = '0px';
-    profileCard.style.gap = '5px';
-
-    profilePic.src = ' ';
+    profilePic.src = '';
     profilePic.alt = '';
     profilePic.title = '';
     userBio.textContent = '';
@@ -47,47 +38,39 @@ const resetProfile = (errorText) => {
 
 // Function to perform the search
 const performSearch = () => {
-    let searchValue = userName.value.trim();
+    const searchValue = userName.value.trim();
     if (!searchValue) {
-        resetProfile('Please enter a username')
-
+        resetProfile('Please enter a username!');
     } else {
         const requestUrl = `https://api.github.com/users/${searchValue}`;
         fetch(requestUrl)
             .then((response) => {
                 if (!response.ok) {
-                    // Check if the status code is 404, then throw "Not Found" error
-                    if (response.status === 404) {
-                        throw new Error("Not Found");
-                    } else {
-                        // For any other status, throw a "Failed to fetch" error
-                        throw new Error("Failed to fetch");
-                    }
+                    if (response.status === 404) throw new Error('Not Found');
+                    throw new Error('Failed to fetch');
                 }
                 return response.json();
             })
-            .then((data) => {
-                console.log(data);
-                updateProfile(data)
-            })
+            .then((data) => updateProfile(data))
             .catch((error) => {
-                console.log(error);
-                if (error.message === "Failed to fetch" || error.message === "TypeError: Failed to fetch") {
-                    resetProfile('Please check your internet connection!')
+                if (error.message === 'Not Found') {
+                    resetProfile('User not found!');
+                } else if (error.message.includes('Failed to fetch')) {
+                    resetProfile('Please check your internet connection!');
                 } else {
-                    resetProfile('An error occurred!')
+                    resetProfile('An error occurred!');
                 }
             });
     }
 };
 
-// Search when clicking the button
+// Search on button click
 searchButton.addEventListener('click', (e) => {
     e.preventDefault();
     performSearch();
 });
 
-// Search when pressing Enter in the input field
+// Search on pressing Enter
 userName.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
         e.preventDefault();
