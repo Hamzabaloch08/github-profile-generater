@@ -1,0 +1,128 @@
+/* Responsive Breakpoints */
+
+/* Max Width: 1440px */
+@media (max-width: 1440px) {
+  .userGithubProfileCard {
+    width: 60%;
+    height: 85vh;
+  }
+
+  .userBio {
+    font-size: 0.95rem;
+  }
+
+  .searchBox > input {
+    font-size: 0.85rem;
+  }
+}
+
+/* Max Width: 1024px */
+@media (max-width: 1024px) {
+  .userGithubProfileCard {
+    width: 70%;
+    height: auto;
+    padding: 20px;
+  }
+
+  .userBio {
+    font-size: 0.9rem;
+  }
+
+  .searchBox > input {
+    width: 80%;
+  }
+}
+
+/* Max Width: 768px */
+@media (max-width: 768px) {
+  .userGithubProfileCard {
+    width: 80%;
+    gap: 20px;
+  }
+
+  .userBio {
+    font-size: 0.85rem;
+  }
+
+  .userInfo {
+    gap: 30px;
+  }
+
+  .searchBox > input {
+    width: 100%;
+    padding: 12px 20px;
+  }
+}
+
+/* Max Width: 425px */
+@media (max-width: 425px) {
+  .userGithubProfileCard {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .userBio {
+    width: 100%;
+    font-size: 0.8rem;
+  }
+
+  .userInfo {
+    gap: 10px;
+  }
+
+  .searchBox {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .searchBox > input {
+    width: 100%;
+    font-size: 0.85rem;
+  }
+
+  .searchBox > button {
+      padding: 12px 20px;
+      width: 100%;
+  }
+}
+
+/* Max Width: 375px */
+@media (max-width: 375px) {
+  .userGithubProfileCard {
+    width: 95%;
+  }
+
+  .userBio {
+    font-size: 0.75rem;
+  }
+
+  .searchBox > input {
+    font-size: 0.8rem;
+  }
+}
+
+/* Max Width: 320px */
+@media (max-width: 320px) {
+  .userGithubProfileCard {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .userBio {
+    font-size: 0.7rem;
+  }
+
+  .userInfo {
+    font-size: 0.85rem;
+  }
+
+  .searchBox > input {
+    padding: 10px;
+    font-size: 0.75rem;
+  }
+
+  .searchBox > button {
+    font-size: 0.9rem;
+  }
+}
