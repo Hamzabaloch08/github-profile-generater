@@ -21,20 +21,44 @@ body {
   height: 100vh;
 }
 
+@keyframes infiniteBoxShadow {
+  0% {
+    box-shadow: 0px 0px 10px 5px rgba(128, 0, 128, 0.4); /* Dim purple */
+  }
+  25% {
+    box-shadow: 0px 0px 12px 7px rgba(111, 9, 111, 0.6); /* Dim purple */
+  }
+  50% {
+    box-shadow: 0px 0px 18px 10px rgba(194, 194, 194, 0.959); /* White */
+  }
+  75% {
+    box-shadow: 0px 0px 12px 7px rgba(111, 9, 111, 0.6); /* Dim purple */
+  }
+  100% {
+    box-shadow: 0px 0px 10px 5px rgba(128, 0, 128, 0.4); /* Dim purple */
+  }
+}
+
 .userGithubProfileCard {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border-radius: 15px;
+  border: 1px white solid;
+  box-shadow: 0px 0px 10px 5px rgba(128, 0, 128, 0.4); /* Dim purple */
   background-color: #212121;
   width: 55%;
   max-width: 500px;
   height: auto;
   padding: 20px;
   gap: 15px;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  animation: infiniteBoxShadow 3s ease-in-out infinite;
 }
+
+
+
+
 
 #heading {
   color: #ffffff;
