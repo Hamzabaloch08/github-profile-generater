@@ -6,6 +6,22 @@ const profileCard = document.querySelector('.userGithubProfileCard');
 const errorMsg = document.querySelector('#heading');
 const follower = document.querySelector('.userFollower');
 const following = document.querySelector('.userFollowing');
+const loader = document.querySelector('#loader');
+
+// Function to start loading
+let startLoading = () => {
+    loader.classList.remove('hidden'); // Remove the hidden class
+    loader.classList.add('flex'); // Add the flex class
+    profilePic.classList.add('hidden')
+};
+
+// Function to stop loading
+let stopLoading = () => {
+    loader.classList.remove('flex'); // Remove the flex class
+    loader.classList.add('hidden'); // Add the hidden class
+    profilePic.classList.remove('hidden')
+};
+
 
 // Function to update profile details
 const updateProfile = (data) => {
@@ -37,30 +53,42 @@ const resetProfile = (errorText) => {
 // Function to perform the search
 const performSearch = () => {
     const searchValue = userName.value.trim();
+
     if (!searchValue) {
         resetProfile('Please enter a username!');
-    } else {
-        const requestUrl = `https://api.github.com/users/${searchValue}`;
-        fetch(requestUrl)
-            .then((response) => {
-                if (!response.ok) {
-                    if (response.status === 404) throw new Error('Not Found');
-                    throw new Error('Failed to fetch');
-                }
-                return response.json();
-            })
-            .then((data) => updateProfile(data))
-            .catch((error) => {
-                if (error.message === 'Not Found') {
-                    resetProfile('User not found!');
-                } else if (error.message.includes('Failed to fetch')) {
-                    resetProfile('Please check your internet connection!');
-                } else {
-                    resetProfile('An error occurred!');
-                }
-            });
+        return;
     }
+
+    // Show loader
+    startLoading();
+
+    const requestUrl = `https://api.github.com/users/${searchValue}`;
+    fetch(requestUrl)
+        .then((response) => {
+            if (!response.ok) {
+                if (response.status === 404) throw new Error('Not Found');
+                throw new Error('Failed to fetch');
+            }
+            return response.json();
+        })
+        .then((data) => {
+            updateProfile(data);
+        })
+        .catch((error) => {
+            if (error.message === 'Not Found') {
+                resetProfile('User not found!');
+            } else if (error.message.includes('Failed to fetch')) {
+                resetProfile('Please check your internet connection!');
+            } else {
+                resetProfile('An error occurred!');
+            }
+        })
+        .finally(() => {
+            // Hide loader
+            stopLoading();
+        });
 };
+
 
 // Search on button click
 searchButton.addEventListener('click', (e) => {
