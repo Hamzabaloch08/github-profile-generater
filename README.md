@@ -32,5 +32,5 @@ This project is a web application that allows users to enter a GitHub username a
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Hamzabaloch08/github-profile-card.git
+   git clone https://github.com/Hamzabaloch08/github-profile-generater.git
 
